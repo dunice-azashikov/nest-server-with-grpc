@@ -4,16 +4,17 @@ import {
   Transport,
   MicroserviceOptions,
 } from '@nestjs/microservices';
+import { join } from 'path';
 import { AppModule } from './app.module';
 import { UsersModule } from './users-microservice/users.module';
 
 export const logger = new Logger('Main');
 
 const microserviceOptions: MicroserviceOptions = {
-  transport: Transport.TCP,
+  transport: Transport.GRPC,
   options: {
-    host: '127.0.0.1',
-    port: 8877,
+    package: 'app',
+    protoPath: join(__dirname, '../src/app.proto'),
   },
 }
 
