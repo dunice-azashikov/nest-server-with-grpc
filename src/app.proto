@@ -3,8 +3,18 @@ syntax = "proto3";
 package app;
 
 service UsersController {
-    rpc GetUsers (Empty) returns (UserArray);
-    rpc AddUser (User) returns (User);
+    rpc GetUsers (CarrieredMessage) returns (UserArray);
+    rpc AddUser (CarrieredMessage) returns (User);
+}
+
+message CarrieredMessage {
+    map<string, string> carrier = 1;
+    Corpus corpus = 4;
+}
+enum Corpus {
+    User = 0;
+    UserArray = 1;
+    Empty = 2;
 }
 
 message User {

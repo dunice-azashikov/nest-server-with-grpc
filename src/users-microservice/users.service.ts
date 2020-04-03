@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import User from './types/user.type';
+import User from '../interfaces/user.type';
 import { logger } from 'src/main';
 
 @Injectable()
@@ -15,12 +15,11 @@ export class UsersService {
   ];
 
   async getUsers(): Promise<{ users: User[] }> {
-    logger.log("i'm in users microsesrvice service");
     return await new Promise<{ users: User[] }>((res, rej) => {
       setTimeout(() => {
-        res({
+        Math.random() > 0.2 ? res({
           users: this._users,
-        });
+        }) : rej(new Error('Errored'));
       }, 100);
     });
   }

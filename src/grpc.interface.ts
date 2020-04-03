@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import User from './users-microservice/types/user.type';
+import User from './interfaces/user.type';
 
 export interface IGrpcService {
     getUsers(data: {}): Observable<User[]>;
