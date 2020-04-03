@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package app;
+
+service UsersController {
+    rpc GetUsers (Empty) returns (UserArray);
+    rpc AddUser (User) returns (User);
+}
+
+message User {
+    required string username = 1;
+    required string email = 2;
+    required string cityName = 3;
+    required string birthDate = 4;
+    required string password = 5;
+}
+
+message UserArray {
+    repeated User users = 1;
+}
+
+message Empty {
+}

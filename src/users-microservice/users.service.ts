@@ -4,13 +4,23 @@ import { logger } from 'src/main';
 
 @Injectable()
 export class UsersService {
-  private _users: User[] = [];
+  private _users: User[] = [
+    {
+      username: 'string',
+      password: 'string',
+      email: 'string',
+      birthDate: new Date(),
+      cityName: 'string',
+    },
+  ];
 
-  async getUsers(): Promise<User[]> {
+  async getUsers(): Promise<{ users: User[] }> {
     logger.log("i'm in users microsesrvice service");
-    return await new Promise<User[]>((res, rej) => {
+    return await new Promise<{ users: User[] }>((res, rej) => {
       setTimeout(() => {
-        res(this._users);
+        res({
+          users: this._users,
+        });
       }, 100);
     });
   }
